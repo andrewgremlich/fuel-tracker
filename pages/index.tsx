@@ -4,13 +4,13 @@ import Image from "next/image";
 
 import { H1 } from "components/Text";
 
-const Home: NextPage = () => {
-  return (
-    <div>
-      <H1>Hello world</H1>
-    </div>
-  );
-};
+const Home: NextPage = () => (
+  <div>
+    <H1>Hello world</H1>
+    {/* Search and add */}
+    {/* Day Carousel with total for day */}
+  </div>
+);
 
 export const getServerSideProps: GetServerSideProps = async () => {
   console.log(process.env.USDA_API_KEY);
