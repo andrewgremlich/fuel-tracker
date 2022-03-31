@@ -4,3 +4,24 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  --theme-red: #9c4949;
+  --theme-blue: #3286ad;
+  --theme-green: #418d52;
+  --theme-yellow: #f7b955;
+  --theme-orange: #f79e55;
+  --theme-purple: #9c4c9c;
+  --theme-pink: #ffa3a3;
+  --theme-brown: #9c654c;
+  --theme-grey: #9c9c9c;
+  --theme-light-grey: #f7f7f7;
+  --theme-dark-grey: #4c4c4c;
+  --theme-black: #131313;
+  --theme-white: #f3f3f3;
+}
