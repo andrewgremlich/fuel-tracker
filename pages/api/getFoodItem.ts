@@ -9,7 +9,7 @@ type QueryParams = {
 };
 
 export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  const queryParams = req.query as QueryParams;
+  const queryParams = req.query as unknown as QueryParams;
 
   const fetchUSDAdata = await fetch(
     `https://api.nal.usda.gov/fdc/v1/food/${queryParams.foodId}?api_key=${process.env.USDA_API_KEY}`
