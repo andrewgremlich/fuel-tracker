@@ -47,8 +47,8 @@ export default async (
       }),
     }
   );
-  const data = await fetchUSDAdata.json();
-  const response = data.foods.map(
+  const searchResponse = await fetchUSDAdata.json();
+  const response = searchResponse.foods.map(
     ({
       fdcId: id,
       lowercaseDescription: description,
@@ -63,21 +63,18 @@ export default async (
       brandName: string;
       ingredients: string;
       foodNutrients: NutrientData[];
-    }) => (
-      console.log(foodNutrients),
-      {
-        id,
-        description,
-        brandOwner,
-        brandName,
-        ingredients,
-        nutrients: foodNutrients.map(({ nutrientName, unitName, value }) => ({
-          nutrientName,
-          unitName,
-          value,
-        })),
-      }
-    )
+    }) => ({
+      id,
+      description,
+      brandOwner,
+      brandName,
+      ingredients,
+      nutrients: foodNutrients.map(({ nutrientName, unitName, value }) => ({
+        nutrientName,
+        unitName,
+        value,
+      })),
+    })
   );
 
   res.status(200).json({ foods: response });

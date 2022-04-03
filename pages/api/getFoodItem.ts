@@ -1,14 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
+type Nutrient = {
   name: string;
+  unitName: string;
+  value: number;
+  description: string;
 };
+
+type ReturnData = { id: string; description: string; nutrients: Nutrient[] };
 
 type QueryParams = {
   foodId: string;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export default async (
+  req: NextApiRequest,
+  res: NextApiResponse<ReturnData>
+) => {
   const queryParams = req.query as unknown as QueryParams;
 
   const fetchUSDAdata = await fetch(
@@ -16,7 +24,14 @@ export default async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   );
   const data = await fetchUSDAdata.json();
 
-  console.log(data);
-
-  res.status(200).json({ name: "John Doe" });
+  res.status(200).json({
+    id: data.fdcId,
+    description: data.description,
+    nutrients: data.foodNutrients.map((n) => ({
+      name: n.nutrient.name,
+      unitName: n.nutrient.unitName,
+      value: n.amount,
+      description: n.nutrient.description,
+    })),
+  });
 };
