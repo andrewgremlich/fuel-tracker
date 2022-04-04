@@ -5,9 +5,9 @@ import { FoodSearch } from "components/FoodSearch";
 
 const Home: NextPage = () => (
   <div>
-    <FoodSearch />
     {/* Day Carousel with total for day */}
     {/* Estimation of needed calories per day */}
+    <FoodSearch />
   </div>
 );
 
