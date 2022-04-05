@@ -1,27 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type NutrientData = {
-  nutrientName: string;
-  unitName: string;
-  value: number;
-};
-
-type SearchData = {
-  foods: {
-    id: number;
-    description: string;
-    brandOwner: string;
-    brandName: string;
-    ingredients: string;
-    nutrients: NutrientData[];
-  }[];
-};
-
-type QueryParams = {
-  foodQuery: string;
-  pageSize: number;
-  pageNumber: number;
-};
+import type { NutrientData, SearchData, QueryParams } from "models/foods";
 
 export default async (
   req: NextApiRequest,
@@ -31,7 +10,7 @@ export default async (
     foodQuery: query,
     pageNumber,
     pageSize,
-  } = req.query as unknown as QueryParams;
+  } = req.query as unknown as Partial<QueryParams>;
 
   const fetchUSDAdata = await fetch(
     `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${process.env.USDA_API_KEY}`,
