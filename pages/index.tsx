@@ -33,7 +33,7 @@ const Home: NextPage = () => {
       {/* Day Carousel with total for day */}
       {/* Estimation of needed calories per day */}
       <FoodSearch {...{ getSearchResults, setFoodQuery }} />
-      <SearchResults />
+      <SearchResults {...{ searchResults }} />
     </div>
   );
 };

@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import type { NutrientData, SearchData, QueryParams } from "models/foods";
+import type {
+  SearchData,
+  QueryParams,
+  RawFoodSearchData,
+} from "models/foods";
 
 export default async (
   req: NextApiRequest,
@@ -35,18 +39,13 @@ export default async (
       brandName,
       ingredients,
       foodNutrients,
-    }: {
-      fdcId: string;
-      lowercaseDescription: string;
-      brandOwner: string;
-      brandName: string;
-      ingredients: string;
-      foodNutrients: NutrientData[];
-    }) => ({
+      subbrandName,
+    }: RawFoodSearchData) => ({
       id,
       description,
       brandOwner,
       brandName,
+      productName: subbrandName,
       ingredients,
       nutrients: foodNutrients.map(({ nutrientName, unitName, value }) => ({
         nutrientName,
