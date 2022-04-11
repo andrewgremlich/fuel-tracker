@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import type {
   QueryParams,
   USDAFoodsData,
-  NutrientData,
+  NutrientDataExpanded,
   DataResponse,
   FoodItem,
 } from "models/foods";
@@ -43,10 +43,16 @@ export default async (
     ingredients: food.ingredients,
     productName: food.subbrandName,
     foodNutrients: food.foodNutrients?.map(
-      ({ nutrientName, unitName, value }: NutrientData) => ({
+      ({
         nutrientName,
         unitName,
         value,
+        derivationDescription,
+      }: NutrientDataExpanded) => ({
+        nutrientName,
+        unitName,
+        value,
+        derivationDescription,
       })
     ),
   }));

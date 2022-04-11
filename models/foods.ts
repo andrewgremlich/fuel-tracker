@@ -1,27 +1,39 @@
-export type NutrientData = {
+export type NutrientDataExpanded = {
   nutrientName: string;
   unitName: string;
   value: number;
+  derivationDescription: string;
 };
 
-type FoodMeta = {
+export type NutrientDataSimple = {
+  nutrient: {
+    name: string;
+    unitName: string;
+  };
+  foodNutrientDerivation: {
+    description: string;
+  };
+  amount: number;
+};
+
+export type FoodMeta<T> = {
   fdcId: number;
   brandOwner: string;
   brandName: string;
   ingredients: string;
-  foodNutrients: NutrientData[];
+  foodNutrients: T[];
+  description?: string;
 };
 
 export type USDAFoodsData = {
   lowercaseDescription: string;
   subbrandName: string;
-} & FoodMeta;
+} & FoodMeta<NutrientDataExpanded>;
 
 export type FoodItem = {
   description: string;
   productName: string;
-} & FoodMeta;
-
+} & FoodMeta<NutrientDataExpanded>;
 
 export type DataResponse<T> = {
   foods: T[];
@@ -34,27 +46,13 @@ export type QueryParams = {
   foodId: string;
 };
 
-// TODO Double check these types below...
-
-export type Nutrient = {
-  name: string;
-  unitName: string;
-  value: number;
+export type FoodReturnData = {
+  fdcId: number;
   description: string;
-};
-
-export type ReturnData = {
-  id: string;
-  description: string;
-  nutrients: Nutrient[];
-};
-
-export type RawFoodSearchData = {
-  fdcId: string;
-  lowercaseDescription: string;
-  brandOwner: string;
-  brandName: string;
-  ingredients: string;
-  foodNutrients: NutrientData[];
-  subbrandName: string;
+  nutrients: {
+    description: string;
+    value: number;
+    unit: string;
+    name: string;
+  }[];
 };
