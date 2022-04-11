@@ -16,7 +16,7 @@ export default async (
   res.status(200).json({
     id: data.fdcId,
     description: data.description,
-    nutrients: data.foodNutrients.map((n) => ({
+    nutrients: data.foodNutrients.map((n: any) => ({
       name: n.nutrient.name,
       unitName: n.nutrient.unitName,
       value: n.amount,

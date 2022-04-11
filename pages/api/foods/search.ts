@@ -1,14 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import type {
-  SearchData,
   QueryParams,
-  RawFoodSearchData,
+  USDAFoodsData,
+  NutrientData,
+  DataResponse,
+  FoodItem,
 } from "models/foods";
 
 export default async (
   req: NextApiRequest,
-  res: NextApiResponse<SearchData>
+  res: NextApiResponse<DataResponse<FoodItem>>
 ) => {
   const {
     foodQuery: query,
@@ -30,30 +32,24 @@ export default async (
       }),
     }
   );
-  const searchResponse = await fetchUSDAdata.json();
-  const response = searchResponse.foods.map(
-    ({
-      fdcId: id,
-      lowercaseDescription: description,
-      brandOwner,
-      brandName,
-      ingredients,
-      foodNutrients,
-      subbrandName,
-    }: RawFoodSearchData) => ({
-      id,
-      description,
-      brandOwner,
-      brandName,
-      productName: subbrandName,
-      ingredients,
-      nutrients: foodNutrients.map(({ nutrientName, unitName, value }) => ({
+  const searchResponse =
+    (await fetchUSDAdata.json()) as DataResponse<USDAFoodsData>;
+
+  const foods = searchResponse.foods.map((food: USDAFoodsData) => ({
+    fdcId: food.fdcId,
+    description: food.lowercaseDescription,
+    brandOwner: food.brandOwner,
+    brandName: food.brandName,
+    ingredients: food.ingredients,
+    productName: food.subbrandName,
+    foodNutrients: food.foodNutrients?.map(
+      ({ nutrientName, unitName, value }: NutrientData) => ({
         nutrientName,
         unitName,
         value,
-      })),
-    })
-  );
+      })
+    ),
+  }));
 
-  res.status(200).json({ foods: response });
+  res.status(200).json({ foods });
 };

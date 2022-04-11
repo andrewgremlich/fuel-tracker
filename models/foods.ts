@@ -4,18 +4,27 @@ export type NutrientData = {
   value: number;
 };
 
-export type FoodItem = {
-  id: number;
-  description: string;
+type FoodMeta = {
+  fdcId: number;
   brandOwner: string;
   brandName: string;
   ingredients: string;
-  productName: string;
-  nutrients: NutrientData[];
+  foodNutrients: NutrientData[];
 };
 
-export type SearchData = {
-  foods: FoodItem[];
+export type USDAFoodsData = {
+  lowercaseDescription: string;
+  subbrandName: string;
+} & FoodMeta;
+
+export type FoodItem = {
+  description: string;
+  productName: string;
+} & FoodMeta;
+
+
+export type DataResponse<T> = {
+  foods: T[];
 };
 
 export type QueryParams = {
@@ -24,6 +33,8 @@ export type QueryParams = {
   pageNumber: number;
   foodId: string;
 };
+
+// TODO Double check these types below...
 
 export type Nutrient = {
   name: string;
