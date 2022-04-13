@@ -1,23 +1,51 @@
-import { FC, MouseEventHandler, FormEventHandler } from "react";
+import { FC, FormEventHandler, useState } from "react";
+
+import { QueryParams } from "models/foods";
 
 import styles from "./styles.module.css";
 
 type FoodSearchProps = {
-  getSearchResults: FormEventHandler<HTMLFormElement>;
-  setFoodQuery: (query: string) => void;
+  getSearchResults: (queryParams: QueryParams) => void;
 };
 
-export const FoodSearch: FC<FoodSearchProps> = ({
-  setFoodQuery,
-  getSearchResults,
-}) => (
-  <form onSubmit={getSearchResults} className={styles["search-bar"]}>
-    <input
-      className={styles["search-input"]}
-      type="search"
-      placeholder="Search Foods"
-      onChange={(evt) => setFoodQuery(evt.target.value)}
-    />
-    <input className={styles["search-submit"]} type="submit" value="Search!" />
-  </form>
-);
+export const FoodSearch: FC<FoodSearchProps> = ({ getSearchResults }) => {
+  const [foodQuery, setFoodQuery] = useState("");
+  const [pageSize, setPageSize] = useState(10);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (evt) => {
+    evt.preventDefault();
+    getSearchResults({ foodQuery, pageNumber, pageSize });
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className={styles["search-bar"]}>
+      <input
+        className={styles["search-input"]}
+        type="search"
+        placeholder="Search Foods"
+        onChange={(evt) => setFoodQuery(evt.target.value)}
+      />
+      <input
+        onChange={(evt) => setPageSize(+evt.target.value)}
+        defaultValue={pageSize}
+        className={styles["number-input"]}
+        type="number"
+        step={5}
+        placeholder="Page Size"
+      />
+      <input
+        onChange={(evt) => setPageNumber(+evt.target.value)}
+        defaultValue={pageNumber}
+        className={styles["number-input"]}
+        type="number"
+        placeholder="Page Number"
+      />
+      <input
+        className={styles["search-submit"]}
+        type="submit"
+        value="Search!"
+      />
+    </form>
+  );
+};

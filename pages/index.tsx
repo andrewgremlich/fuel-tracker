@@ -3,17 +3,13 @@ import type { GetServerSideProps, NextPage } from "next";
 
 import { FoodSearch } from "components/FoodSearch";
 import { SearchResults } from "components/SearchResults";
-import { FoodItem } from "models/foods";
+import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
+  const [totalKcal, setTotalKcal] = useState(0);
   const [searchResults, setSearchResults] = useState<FoodItem[]>([]);
-  const [foodQuery, setFoodQuery] = useState("");
-  const [pageSize, setPageSize] = useState(10);
-  const [pageNumber, setPageNumber] = useState(1);
 
-  const getSearchResults: FormEventHandler<HTMLFormElement> = (evt) => {
-    evt.preventDefault();
-
+  const getSearchResults = ({ foodQuery, pageNumber, pageSize }: QueryParams) => {
     const queryParams = new URLSearchParams({
       foodQuery,
       pageSize,
@@ -32,8 +28,13 @@ const Home: NextPage = () => {
     <div>
       {/* Day Carousel with total for day */}
       {/* Estimation of needed calories per day */}
-      <FoodSearch {...{ getSearchResults, setFoodQuery }} />
-      <SearchResults {...{ searchResults }} />
+      <FoodSearch {...{ getSearchResults }} />
+      <SearchResults
+        {...{
+          searchResults,
+          addToKcal: (kcal) => setTotalKcal(totalKcal + kcal),
+        }}
+      />
     </div>
   );
 };

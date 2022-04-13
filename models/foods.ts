@@ -43,7 +43,7 @@ export type QueryParams = {
   foodQuery: string;
   pageSize: number;
   pageNumber: number;
-  foodId: string;
+  foodId?: string;
 };
 
 export type FoodReturnData = {
