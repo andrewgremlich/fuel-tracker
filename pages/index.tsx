@@ -1,8 +1,9 @@
-import { useState, FormEventHandler } from "react";
+import { useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
 
 import { FoodSearch } from "components/FoodSearch";
 import { SearchResults } from "components/SearchResults";
+import { Food } from "components/FootItem";
 import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
@@ -18,10 +19,7 @@ const Home: NextPage = () => {
 
     fetch(`/api/foods/search?${queryParams}`)
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setSearchResults(res.foods);
-      });
+      .then((res) => setSearchResults(res.foods));
   };
 
   return (
@@ -29,12 +27,19 @@ const Home: NextPage = () => {
       {/* Day Carousel with total for day */}
       {/* Estimation of needed calories per day */}
       <FoodSearch {...{ getSearchResults }} />
-      <SearchResults
-        {...{
-          searchResults,
-          addToKcal: (kcal) => setTotalKcal(totalKcal + kcal),
-        }}
-      />
+      <SearchResults>
+        {
+          searchResults.map((food) => (
+            <Food
+              key={food.fdcId}
+              {...{
+                food,
+                addToDailyKcal: (kcal) => (console.log(kcal), setTotalKcal(totalKcal + kcal)),
+              }}
+            />
+          ))
+        }
+      </SearchResults>
     </div>
   );
 };
