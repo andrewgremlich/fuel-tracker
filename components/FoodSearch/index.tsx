@@ -29,7 +29,7 @@ export const FoodSearch: FC<FoodSearchProps> = ({ getSearchResults }) => {
       <input
         onChange={(evt) => setPageSize(+evt.target.value)}
         defaultValue={pageSize}
-        className={styles["number-input"]}
+        className={`${styles["number-input"]} ${styles["page-size"]}`}
         type="number"
         step={5}
         placeholder="Page Size"
@@ -37,7 +37,7 @@ export const FoodSearch: FC<FoodSearchProps> = ({ getSearchResults }) => {
       <input
         onChange={(evt) => setPageNumber(+evt.target.value)}
         defaultValue={pageNumber}
-        className={styles["number-input"]}
+        className={`${styles["number-input"]} ${styles["page-number"]}`}
         type="number"
         placeholder="Page Number"
       />

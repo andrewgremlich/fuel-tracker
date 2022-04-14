@@ -1,0 +1,29 @@
+.food-item {
+  margin-bottom: 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.description {
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.description:hover {
+  background-color: #ececec;
+}
+
+.portion-multiplier {
+  padding: 10px 20px;
+}
+
+.kcal-indicator {
+  color: var(--theme-green);
+  font-weight: bold;
+}
