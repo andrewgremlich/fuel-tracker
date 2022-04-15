@@ -1,0 +1,34 @@
+.number-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  font-size: 18px;
+  appearance: none;
+  padding: 5px 10px;
+  background-color: var(--theme-yellow);
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.stepper {
+  display: flex;
+  flex-direction: column;
+}
+
+.icons {
+  border-radius: 50%;
+}
+
+.icons:hover {
+  background-color: aliceblue;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.label {
+  font-size: 12px;
+}

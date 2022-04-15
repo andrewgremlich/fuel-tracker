@@ -1,15 +1,16 @@
 import { FC, useState } from "react";
 
+import { NumberInput } from "components/NumberInput"
 import { FoodItem } from "models/foods";
 
 import styles from "./styles.module.css";
 
-type FootItemProps = {
+type FoodProps = {
   food: FoodItem;
   addToDailyKcal: (kcal: number) => void;
 };
 
-export const Food: FC<FootItemProps> = ({ food, addToDailyKcal }) => {
+export const Food: FC<FoodProps> = ({ food, addToDailyKcal }) => {
   const [portionMultiplier, setPortionMultiplier] = useState(1);
   const kcal =
     food.foodNutrients.find((item) => item.nutrientName === "Energy")?.value ??
@@ -37,6 +38,7 @@ export const Food: FC<FootItemProps> = ({ food, addToDailyKcal }) => {
           defaultValue={portionMultiplier}
           onChange={(evt) => setPortionMultiplier(+evt.target.value)}
         />
+        <NumberInput {...{ label: 'testƒ', allowNegativeValues: false }} />
       </div>
     </div>
   );

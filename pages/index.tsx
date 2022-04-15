@@ -3,7 +3,7 @@ import type { GetServerSideProps, NextPage } from "next";
 
 import { FoodSearch } from "components/FoodSearch";
 import { SearchResults } from "components/SearchResults";
-import { Food } from "components/FootItem";
+import { Food } from "components/Food";
 import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
