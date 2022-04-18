@@ -22,6 +22,8 @@ const Home: NextPage = () => {
       .then((res) => setSearchResults(res.foods));
   };
 
+  console.log(totalKcal)
+
   return (
     <div>
       {/* Day Carousel with total for day */}

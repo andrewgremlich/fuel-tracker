@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 
-import { NumberInput } from "components/NumberInput"
+import { NumberInput } from "components/NumberInput";
 import { FoodItem } from "models/foods";
 
 import styles from "./styles.module.css";
@@ -22,23 +22,21 @@ export const Food: FC<FoodProps> = ({ food, addToDailyKcal }) => {
         className={`${styles["description"]}`}
         onClick={() => addToDailyKcal((kcal ?? 0) * portionMultiplier)}
       >
-        <p><strong>{food.brandName}</strong></p>
+        <p>
+          <strong>{food.brandName}</strong>
+        </p>
         <p>{food.brandOwner}</p>
         <p>{food.description}</p>
-        <p className={`${styles['kcal-indicator']}`}>{kcal} kcal</p>
+        <p className={`${styles["kcal-indicator"]}`}>{kcal} kcal</p>
       </div>
       <div className={`${styles["portion-multiplier"]}`}>
-        <label htmlFor="portion-multiplier">Portion Multiplier</label>
-        {/* TODO: make custom input! */}
-        <input
-          id="portion-multiplier"
-          type="number"
-          placeholder="Portion Multiplier"
-          step={0.25}
-          defaultValue={portionMultiplier}
-          onChange={(evt) => setPortionMultiplier(+evt.target.value)}
+        <NumberInput
+          {...{
+            label: "Portion Multiplier",
+            allowNegativeValues: false,
+            valueChange: (d) => setPortionMultiplier(d),
+          }}
         />
-        <NumberInput {...{ label: 'testƒ', allowNegativeValues: false }} />
       </div>
     </div>
   );

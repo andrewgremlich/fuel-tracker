@@ -7,14 +7,16 @@ type NumberInputProps = {
   label: string;
   allowNegativeValues?: boolean;
   step?: number;
+  valueChange?: (d: number) => void;
 };
 
 export const NumberInput: FC<NumberInputProps> = ({
   label,
   step = 0.25,
   allowNegativeValues = true,
+  valueChange = () => {},
 }) => {
-  const [numberValue, setNumberValue] = useState(0);
+  const [numberValue, setNumberValue] = useState(1);
 
   return (
     <div>
@@ -22,32 +24,29 @@ export const NumberInput: FC<NumberInputProps> = ({
         {label}
       </label>
       <div className={`${styles["number-input"]}`}>
-        <input
-          id="number-input"
-          // TODO: this may not fly for a while...
-          disabled={true}
-          className={`${styles["input"]}`}
-          type="text"
-          placeholder="0"
-          step={step}
-          value={numberValue}
-        />
+        <p className={`${styles["number-display"]}`}>{numberValue}</p>
         <div className={`${styles["stepper"]}`}>
           <FiChevronUp
             size={"25px"}
             className={`${styles["icons"]}`}
-            onClick={() => setNumberValue(numberValue + step)}
+            onClick={() => {
+              const newValue = numberValue + step;
+
+              setNumberValue(newValue);
+              valueChange(newValue);
+            }}
           />
           <FiChevronDown
             size={"25px"}
             className={`${styles["icons"]}`}
-            onClick={() =>
+            onClick={() => {
+              const newValue = numberValue - step;
+
               allowNegativeValues
-                ? setNumberValue(numberValue - step)
-                : setNumberValue(
-                  numberValue - step >= 0 ? numberValue - step : 0
-                )
-            }
+                ? setNumberValue(newValue)
+                : setNumberValue(newValue >= 0 ? newValue : 0);
+              valueChange(newValue);
+            }}
           />
         </div>
       </div>
