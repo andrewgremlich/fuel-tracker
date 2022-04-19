@@ -20,27 +20,47 @@ export const FoodSearch: FC<FoodSearchProps> = ({ getSearchResults }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles["search-bar"]}>
-      <input
-        className={styles["search-input"]}
-        type="search"
-        placeholder="Search Foods"
-        onChange={(evt) => setFoodQuery(evt.target.value)}
-      />
-      <input
-        onChange={(evt) => setPageSize(+evt.target.value)}
-        defaultValue={pageSize}
-        className={`${styles["number-input"]} ${styles["page-size"]}`}
-        type="number"
-        step={5}
-        placeholder="Page Size"
-      />
-      <input
-        onChange={(evt) => setPageNumber(+evt.target.value)}
-        defaultValue={pageNumber}
-        className={`${styles["number-input"]} ${styles["page-number"]}`}
-        type="number"
-        placeholder="Page Number"
-      />
+      <div className={styles["search-input"]}>
+        <label
+          htmlFor="food-query-input"
+          className={`${styles["input-label"]}`}
+        >
+          Food
+        </label>
+        <input
+          id="food-query-input"
+          type="search"
+          placeholder="Search Foods"
+          onChange={(evt) => setFoodQuery(evt.target.value)}
+        />
+      </div>
+      <div id="page-size" className={`${styles["page-size"]}`}>
+        <label htmlFor="page-size-input" className={`${styles["input-label"]}`}>
+          Page Size
+        </label>
+        <input
+          id="page-size-input"
+          onChange={(evt) => setPageSize(+evt.target.value)}
+          defaultValue={pageSize}
+          className={`${styles["number-input"]}`}
+          type="number"
+          step={5}
+          placeholder="Page Size"
+        />
+      </div>
+      <div id="page-number" className={`${styles["page-number"]}`}>
+        <label htmlFor="page-number" className={`${styles["input-label"]}`}>
+          Page Number
+        </label>
+        <input
+          id="page-number-input"
+          onChange={(evt) => setPageNumber(+evt.target.value)}
+          defaultValue={pageNumber}
+          className={`${styles["number-input"]}`}
+          type="number"
+          placeholder="Page Number"
+        />
+      </div>
       <input
         className={styles["search-submit"]}
         type="submit"
