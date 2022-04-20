@@ -4,6 +4,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import { FoodSearch } from "components/FoodSearch";
 import { SearchResults } from "components/SearchResults";
 import { Food } from "components/Food";
+import { BasalMetabolic } from "components/BasalMetabolic";
 import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
@@ -27,7 +28,8 @@ const Home: NextPage = () => {
   return (
     <div>
       {/* Day Carousel with total for day */}
-      {/* Estimation of needed calories per day */}
+      {/* TODO: make into dark by default */}
+      <BasalMetabolic />
       <FoodSearch {...{ getSearchResults }} />
       <SearchResults>
         {
