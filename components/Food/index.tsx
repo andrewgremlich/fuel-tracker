@@ -15,19 +15,20 @@ export const Food: FC<FoodProps> = ({ food, addToDailyKcal }) => {
   const kcal =
     food.foodNutrients.find((item) => item.nutrientName === "Energy")?.value ??
     0;
+  const kcalWithPortionM = kcal * portionMultiplier;
 
   return (
     <div className={`${styles["food-item"]}`}>
       <div
         className={`${styles["description"]}`}
-        onClick={() => addToDailyKcal((kcal ?? 0) * portionMultiplier)}
+        onClick={() => addToDailyKcal(kcalWithPortionM)}
       >
         <p>
           <strong>{food.brandName}</strong>
         </p>
         <p>{food.brandOwner}</p>
         <p>{food.description}</p>
-        <p className={`${styles["kcal-indicator"]}`}>{kcal} kcal</p>
+        <p className={`${styles["kcal-indicator"]}`}>{kcalWithPortionM} kcal</p>
       </div>
       <div className={`${styles["portion-multiplier"]}`}>
         <NumberInput

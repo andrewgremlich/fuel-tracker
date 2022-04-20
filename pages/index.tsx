@@ -22,7 +22,7 @@ const Home: NextPage = () => {
       .then((res) => setSearchResults(res.foods));
   };
 
-  console.log(totalKcal)
+  console.log(totalKcal);
 
   return (
     <div>

@@ -14,7 +14,7 @@ export const NumberInput: FC<NumberInputProps> = ({
   label,
   step = 0.25,
   allowNegativeValues = true,
-  valueChange = () => {},
+  valueChange = () => { },
 }) => {
   const [numberValue, setNumberValue] = useState(1);
 
@@ -41,11 +41,15 @@ export const NumberInput: FC<NumberInputProps> = ({
             className={`${styles["icons"]}`}
             onClick={() => {
               const newValue = numberValue - step;
+              const numberToProject = newValue >= 0 ? newValue : 0;
 
               allowNegativeValues
                 ? setNumberValue(newValue)
-                : setNumberValue(newValue >= 0 ? newValue : 0);
-              valueChange(newValue);
+                : setNumberValue(numberToProject);
+
+              allowNegativeValues
+                ? valueChange(newValue)
+                : valueChange(numberToProject);
             }}
           />
         </div>
