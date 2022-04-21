@@ -9,6 +9,7 @@
   min-width: 80px;
   padding: 5px 10px;
   background-color: var(--theme-yellow);
+  color: var(--theme-black);
   border-radius: 10px;
   margin-right: 10px;
 
@@ -22,6 +23,8 @@
 
 .icons {
   border-radius: 50%;
+  color: var(--theme-blue);
+  /* background-color: var(--theme-grey); */
 }
 
 .icons:hover {

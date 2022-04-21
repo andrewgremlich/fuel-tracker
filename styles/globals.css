@@ -16,8 +16,8 @@ body {
 
 :root {
   --theme-red: #9c4949;
-  --theme-blue: #3286ad;
-  --theme-green: #418d52;
+  --theme-blue: #66b3d6;
+  --theme-green: #67d47f;
   --theme-yellow: #fbd08a;
   --theme-orange: #f79e55;
   --theme-purple: #9c4c9c;
@@ -30,6 +30,10 @@ body {
   --theme-white: #f3f3f3;
 }
 
+body {
+  background-color: var(--theme-black);
+}
+
 h1,
 h2,
 h3,
@@ -40,4 +44,13 @@ p,
 input,
 label {
   font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  color: var(--theme-white);
 }

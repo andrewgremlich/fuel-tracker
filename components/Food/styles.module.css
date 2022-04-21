@@ -1,5 +1,6 @@
 .food-item {
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -13,10 +14,11 @@
 .description {
   cursor: pointer;
   padding: 10px 20px;
+  border-radius: 20px;
 }
 
 .description:hover {
-  background-color: #ececec;
+  background-color: var(--theme-dark-grey);
 }
 
 .portion-multiplier {
