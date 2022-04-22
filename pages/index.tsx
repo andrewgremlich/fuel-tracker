@@ -4,7 +4,7 @@ import type { GetServerSideProps, NextPage } from "next";
 import { FoodSearch } from "components/FoodSearch";
 import { SearchResults } from "components/SearchResults";
 import { Food } from "components/Food";
-import { BasalMetabolic } from "components/BasalMetabolic";
+import { BMRForm } from "components/BMRForm";
 import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
@@ -23,13 +23,11 @@ const Home: NextPage = () => {
       .then((res) => setSearchResults(res.foods));
   };
 
-  console.log(totalKcal);
-
   return (
     <div>
       {/* Day Carousel with total for day */}
       {/* TODO: make into dark by default */}
-      <BasalMetabolic />
+      <BMRForm />
       <FoodSearch {...{ getSearchResults }} />
       <SearchResults>
         {
