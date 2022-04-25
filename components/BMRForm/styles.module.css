@@ -1,3 +1,15 @@
 .bmr-form {
   margin-bottom: 50px;
+  
+  background-color: var(--theme-dark-grey);
+  border-radius: 20px;
+  padding: 20px 30px 30px 30px;
+}
+
+.radio-button-label {
+  margin-right: 10px;
+}
+
+.radio-buttons {
+  margin-bottom: 10px;
 }

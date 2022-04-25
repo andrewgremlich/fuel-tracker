@@ -29,6 +29,7 @@ export const FoodSearch: FC<FoodSearchProps> = ({ getSearchResults }) => {
         </label>
         <input
           id="food-query-input"
+          className="text-input"
           type="search"
           placeholder="Search Foods"
           onChange={(evt) => setFoodQuery(evt.target.value)}
