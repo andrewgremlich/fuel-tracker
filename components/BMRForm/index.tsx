@@ -4,7 +4,7 @@ import { MaleFemaleSelector } from "components/MaleFemaleSelector";
 import { MeasurementSelector } from "components/MeasurementSelector";
 import { PersonalStats } from "components/PersonalStats";
 import { IntensitySelector } from "components/IntensitySelector";
-import { Gender, MeasurementSystem } from "models/form"
+import { Gender, MeasurementSystem, FormType } from "models/form";
 
 import styles from "./styles.module.css";
 
@@ -15,7 +15,21 @@ export const BMRForm = () => {
   );
 
   const handleFormChange: FormEventHandler<HTMLFormElement> = (evt) => {
-    console.log(evt);
+    const target = evt.target as HTMLInputElement;
+    const getFormType = target.getAttribute("data-formtype") as FormType;
+
+    switch (getFormType) {
+      case FormType.GENDER:
+        setGender(target.value as Gender);
+        break;
+
+      case FormType.MEASUREMENT:
+        setMeasurement(target.value as MeasurementSystem);
+        break;
+
+      default:
+        break;
+    }
   };
 
   return (

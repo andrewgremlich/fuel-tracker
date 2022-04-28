@@ -5,6 +5,7 @@ export const MeasurementSelector = () => (
     <input
       type="radio"
       value={MeasurementSystem.METRIC}
+      data-formtype="measurement"
       name="measurement"
       id="metricRadio"
     />
@@ -18,6 +19,7 @@ export const MeasurementSelector = () => (
       type="radio"
       defaultChecked
       value={MeasurementSystem.IMP}
+      data-formtype="measurement"
       name="measurement"
       id="imperialRadio"
     />

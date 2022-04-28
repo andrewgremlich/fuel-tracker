@@ -6,6 +6,7 @@ export const MaleFemaleSelector = () => (
       type="radio"
       value={Gender.MALE}
       name="gender"
+      data-formtype="gender"
       id="maleRadio"
       defaultChecked
     />
@@ -19,6 +20,7 @@ export const MaleFemaleSelector = () => (
       type="radio"
       value={Gender.FEMALE}
       name="gender"
+      data-formtype="gender"
       id="femaleRadio"
     />
     <label

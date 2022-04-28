@@ -9,6 +9,7 @@ export const PersonalStats: FC<MeasurementSystemType> = ({ measurement }) => (
       className={`text-input`}
       type="number"
       id="height"
+      data-formtype="height"
       name="height"
       placeholder={measurement === MeasurementSystem.METRIC ? "cm" : "in"}
     />
@@ -17,6 +18,7 @@ export const PersonalStats: FC<MeasurementSystemType> = ({ measurement }) => (
       className={`text-input`}
       type="number"
       id="weight"
+      data-formtype="weight"
       name="weight"
       placeholder={measurement === MeasurementSystem.METRIC ? "kg" : "lb"}
     />
@@ -25,6 +27,7 @@ export const PersonalStats: FC<MeasurementSystemType> = ({ measurement }) => (
       className={`text-input`}
       type="number"
       id="age"
+      data-formtype="age"
       name="age"
       placeholder="years"
     />

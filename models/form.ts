@@ -9,3 +9,12 @@ export enum MeasurementSystem {
 }
 
 export type MeasurementSystemType = { measurement: MeasurementSystem };
+
+export enum FormType {
+  GENDER = "gender",
+  INTENSITY = "intensity",
+  MEASUREMENT = "measurement",
+  HEIGHT = "HEIGHT",
+  WEIGHT = "WEIGHT",
+  AGE = "AGE",
+}
