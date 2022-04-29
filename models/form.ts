@@ -1,3 +1,9 @@
+export type MeasurementSystemType = { measurement: MeasurementSystem };
+
+export enum IntensityType {
+  INTENSITY = "intensity",
+}
+
 export enum Gender {
   MALE = "male",
   FEMALE = "female",
@@ -8,8 +14,6 @@ export enum MeasurementSystem {
   IMP = "imperial",
 }
 
-export type MeasurementSystemType = { measurement: MeasurementSystem };
-
 export enum FormType {
   GENDER = "gender",
   INTENSITY = "intensity",
@@ -18,3 +22,13 @@ export enum FormType {
   WEIGHT = "WEIGHT",
   AGE = "AGE",
 }
+
+export enum PersonalStatsType {
+  HEIGHT = "height",
+  WEIGHT = "weight",
+  AGE = "age",
+}
+
+export type BMRFormProps = {
+  setProjectedBmr: (data: number) => void;
+};

@@ -8,7 +8,8 @@ import { BMRForm } from "components/BMRForm";
 import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
-  const [totalKcal, setTotalKcal] = useState(0);
+  const [totalKcal, setTotalKcal] = useState<number>(0);
+  const [projectBmr, setProjectedBmr] = useState<number>(0)
   const [searchResults, setSearchResults] = useState<FoodItem[]>([]);
 
   const getSearchResults = ({ foodQuery, pageNumber, pageSize }: QueryParams) => {
@@ -27,7 +28,7 @@ const Home: NextPage = () => {
     <div>
       {/* Day Carousel with total for day */}
       {/* TODO: make into dark by default */}
-      <BMRForm />
+      <BMRForm setProjectedBmr={(data: number) => setProjectedBmr(data)} />
       <FoodSearch {...{ getSearchResults }} />
       <SearchResults>
         {

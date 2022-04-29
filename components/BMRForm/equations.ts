@@ -17,3 +17,7 @@ export const BMRMetricWomen = ({
   ageYears,
 }: BMRMetricProps) =>
   447.593 + 9.247 * kgWeight + 3.098 * cmHeight - 4.33 * ageYears;
+
+export const lbsToKg = (lbs: number) => lbs * 0.453592;
+
+export const inchesToCm = (inches: number) => inches * 2.54;
