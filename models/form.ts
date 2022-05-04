@@ -28,7 +28,3 @@ export enum PersonalStatsType {
   WEIGHT = "weight",
   AGE = "age",
 }
-
-export type BMRFormProps = {
-  setProjectedBmr: (data: number) => void;
-};

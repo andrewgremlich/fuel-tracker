@@ -1,18 +1,24 @@
 import { useState } from "react";
 import type { GetServerSideProps, NextPage } from "next";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { FoodSearch } from "components/FoodSearch";
 import { SearchResults } from "components/SearchResults";
 import { Food } from "components/Food";
 import { BMRForm } from "components/BMRForm";
+import { DayTotalsCarousel } from "components/DayTotalsCarousel";
 import { FoodItem, QueryParams } from "models/foods";
 
 const Home: NextPage = () => {
   const [totalKcal, setTotalKcal] = useState<number>(0);
-  const [projectBmr, setProjectedBmr] = useState<number>(0)
   const [searchResults, setSearchResults] = useState<FoodItem[]>([]);
 
-  const getSearchResults = ({ foodQuery, pageNumber, pageSize }: QueryParams) => {
+  const getSearchResults = ({
+    foodQuery,
+    pageNumber,
+    pageSize,
+  }: QueryParams) => {
     const queryParams = new URLSearchParams({
       foodQuery,
       pageSize,
@@ -26,23 +32,23 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      {/* Day Carousel with total for day */}
-      {/* TODO: make into dark by default */}
-      <BMRForm setProjectedBmr={(data: number) => setProjectedBmr(data)} />
+      <DayTotalsCarousel />
+      <BMRForm />
       <FoodSearch {...{ getSearchResults }} />
       <SearchResults>
-        {
-          searchResults.map((food) => (
-            <Food
-              key={food.fdcId}
-              {...{
-                food,
-                addToDailyKcal: (kcal) => (console.log(kcal), setTotalKcal(totalKcal + kcal)),
-              }}
-            />
-          ))
-        }
+        {searchResults.map((food) => (
+          <Food
+            key={food.fdcId}
+            {...{
+              food,
+              addToDailyKcal: (kcal) => (
+                console.log(kcal), setTotalKcal(totalKcal + kcal)
+              ),
+            }}
+          />
+        ))}
       </SearchResults>
+      <ToastContainer position="bottom-center" />
     </div>
   );
 };

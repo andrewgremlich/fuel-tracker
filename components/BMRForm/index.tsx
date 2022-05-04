@@ -10,17 +10,18 @@ import {
   FormType,
   PersonalStatsType,
   IntensityType,
-  BMRFormProps,
 } from "models/form";
 
 import styles from "./styles.module.css";
 import { BMRMetricWomen, BMRMetricMen, lbsToKg, inchesToCm } from "./equations";
 
-export const BMRForm: FC<BMRFormProps> = ({ setProjectedBmr }) => {
+export const BMRForm: FC = () => {
   const [gender, setGender] = useState<Gender>(Gender.MALE);
   const [measurement, setMeasurement] = useState<MeasurementSystem>(
     MeasurementSystem.IMP
   );
+  const [projectedBmr, setProjectedBmr] = useState<number>(0);
+
   const [age, setAge] = useState<number>(0);
   const [height, setHeight] = useState<number>(0);
   const [weight, setWeight] = useState<number>(0);
@@ -70,18 +71,19 @@ export const BMRForm: FC<BMRFormProps> = ({ setProjectedBmr }) => {
     let bmrCalc =
       (gender === Gender.MALE
         ? BMRMetricMen({
-          kgWeight: preCalcWeight,
-          cmHeight: preCalcHeight,
-          ageYears: age,
-        })
+            kgWeight: preCalcWeight,
+            cmHeight: preCalcHeight,
+            ageYears: age,
+          })
         : BMRMetricWomen({
-          kgWeight: preCalcWeight,
-          cmHeight: preCalcHeight,
-          ageYears: age,
-        })) * intensity;
+            kgWeight: preCalcWeight,
+            cmHeight: preCalcHeight,
+            ageYears: age,
+          })) * intensity;
 
-    setProjectedBmr(Math.ceil(bmrCalc))
-  }, [gender, measurement, age, height, weight, intensity])
+          // TODO: set for localstorage too
+    setProjectedBmr(Math.ceil(bmrCalc));
+  }, [gender, measurement, age, height, weight, intensity]);
 
   return (
     <div className={`${styles["bmr-form"]}`}>
@@ -91,7 +93,7 @@ export const BMRForm: FC<BMRFormProps> = ({ setProjectedBmr }) => {
         <PersonalStats {...{ measurement }} />
         <IntensitySelector />
       </form>
-
+      <p>Total: {projectedBmr} calories</p>
       <p>Using Harris-Benedict BMR revised by Roza and Shizgal</p>
     </div>
   );

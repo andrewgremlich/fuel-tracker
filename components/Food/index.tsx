@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { toast } from 'react-toastify';
 
 import { NumberInput } from "components/NumberInput";
 import { FoodItem } from "models/foods";
@@ -21,7 +22,10 @@ export const Food: FC<FoodProps> = ({ food, addToDailyKcal }) => {
     <div className={`${styles["food-item"]}`}>
       <div
         className={`${styles["description"]}`}
-        onClick={() => addToDailyKcal(kcalWithPortionM)}
+        onClick={() => {
+          addToDailyKcal(kcalWithPortionM);
+          toast.success(`Added ${food.description} to your daily calorie intake`);
+        }}
       >
         <p>
           <strong>{food.brandName}</strong>
