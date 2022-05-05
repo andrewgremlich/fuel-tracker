@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/api/foods/search?foodQuery=brocolli&pageSize=10&pageNumber=1 HTTP/1.1
+GET http://localhost:8888/.netlify/functions/search?query=brocolli&pageSize=10&pageNumber=1 HTTP/1.1
 
 ###
 GET http://localhost:3000/api/foods/2021562 HTTP/1.1

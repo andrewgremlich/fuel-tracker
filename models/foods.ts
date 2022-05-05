@@ -39,11 +39,13 @@ export type DataResponse<T> = {
   foods: T[];
 };
 
-export type QueryParams = {
-  foodQuery: string;
-  pageSize: number;
+export type SearchQueryParams = {
+  query: string;
   pageNumber: number;
-  foodId?: string;
+  pageSize: number;
+  sort?: string;
+  sortDirection?: string;
+  foodId?: number;
 };
 
 export type FoodReturnData = {
