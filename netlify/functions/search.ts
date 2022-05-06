@@ -11,7 +11,7 @@ import {
 
 config();
 
-export const handler: Handler = async (event, context) => {
+export const handler: Handler = async (event) => {
   const { query, pageNumber, pageSize } =
     event.queryStringParameters as unknown as SearchQueryParams;
   const fetchUSDAdata = await fetch(
@@ -51,8 +51,6 @@ export const handler: Handler = async (event, context) => {
       })
     ),
   }));
-
-  console.log();
 
   return {
     statusCode: 200,

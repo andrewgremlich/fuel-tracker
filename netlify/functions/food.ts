@@ -1,13 +1,17 @@
 import { Handler } from "@netlify/functions";
+import { config } from "dotenv";
+import fetch from "node-fetch";
 
 import { SearchQueryParams, FoodMeta, NutrientDataSimple } from "models/foods";
 
-export const handler: Handler = async (event, context) => {
-  const queryParams =
+config();
+
+export const handler: Handler = async (event) => {
+  const { foodId } =
     event.queryStringParameters as unknown as Partial<SearchQueryParams>;
 
   const fetchUSDAdata = await fetch(
-    `https://api.nal.usda.gov/fdc/v1/food/${queryParams.foodId}?api_key=${process.env.USDA_API_KEY}`
+    `https://api.nal.usda.gov/fdc/v1/food/${foodId}?api_key=${process.env.USDA_API_KEY}`
   );
   const data = (await fetchUSDAdata.json()) as FoodMeta<NutrientDataSimple>;
 
