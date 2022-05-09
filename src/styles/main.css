@@ -1,5 +1,60 @@
+@import url("./classes.css");
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  transition: all 0.2s;
+}
+
+body {
+  padding: 1rem 2rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+label,
+input {
+  font-family: "Open Sans", sans-serif;
+}
+
+main {
+  display: grid;
+  gap: 2rem;
+  grid-template-areas: "calorie-total" "search-food" "bmr-calculator";
+}
+
+@media screen and (min-width: 600px) {
+  main {
+    grid-template-areas:
+      "calorie-total search-food"
+      "bmr-calculator search-food";
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: .4rem;
+}
+
+section {
+  min-height: 200px;
+}
+
+#calorie-total {
+  grid-area: calorie-total;
+  align-self: center;
+  justify-self: center;
+}
+
+#search-food {
+  grid-area: search-food;
+}
+
+#bmr-calculator {
+  grid-area: bmr-calculator;
 }

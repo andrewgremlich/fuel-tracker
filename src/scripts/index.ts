@@ -1,6 +1,3 @@
-import {
-  BMRMetricMen,
-  BMRMetricWomen,
-  lbsToKg,
-  inchesToCm,
-} from "./bmr-equations";
+import { NumberInput } from "./components/number-input";
+
+customElements.define("number-input", NumberInput);
