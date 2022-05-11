@@ -1,4 +1,5 @@
 import { arrowDown, arrowUp, alarm } from "./icons";
+import { styles } from "./style";
 
 export class IconButton extends HTMLElement {
   icon: string = "";
@@ -8,24 +9,25 @@ export class IconButton extends HTMLElement {
     this.attachShadow({ mode: "open" });
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
-        <style>
-          :host {
-            cursor: pointer;
-          }
-        </style>
+        ${styles}
         <button></button>
       `;
     }
   }
 
   static get observedAttributes() {
-    return ["icon"];
+    return ["icon", "size"];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     console.log(name, oldValue, newValue);
-    if (name === "icon") {
-      this.icon = newValue;
+    switch (name) {
+      case "icon":
+        this.icon = newValue;
+        break;
+      case "size":
+        this.style.setProperty("--size", newValue);
+        break;
     }
   }
 
