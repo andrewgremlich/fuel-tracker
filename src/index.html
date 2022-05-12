@@ -18,7 +18,6 @@
     <main>
       <section id="calorie-total">
         <p>0 Calories Consumed</p>
-        <number-input number="0" step="0.25" label="Page Size"></number-input>
       </section>
 
       <section id="search-food">
@@ -29,8 +28,18 @@
           class="text-input"
         />
         <!-- web component for number selector -->
-        <input type="number" id="page-number" />
-        <input type="number" id="page-size" />
+        <number-input
+          id="page-number"
+          number="1"
+          step="1"
+          label="Page Number"
+        ></number-input>
+        <number-input
+          id="page-size"
+          number="5"
+          step="5"
+          label="Page Size"
+        ></number-input>
         <button id="search-food-button">Search</button>
       </section>
 

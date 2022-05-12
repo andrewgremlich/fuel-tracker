@@ -1,11 +1,20 @@
 import { styles } from "./style";
 
+enum NumberInputProps {
+  number = "number",
+  step = "step",
+  precision = "precision",
+  label = "label",
+  allowNegativeValues = "allow-negative-values",
+}
+
 // https://kinsta.com/blog/web-components/
 export class NumberInput extends HTMLElement {
   number: number = 0;
   step: number = 0;
-  label: string = "";
   precision: number = 0;
+  label: string = "";
+  allowNegativeValues: boolean = false;
 
   constructor() {
     super();
@@ -30,23 +39,27 @@ export class NumberInput extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["number", "step", "label"];
+    return ["number", "step", "label", "allow-negative-values"];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     switch (name) {
-      case "number":
+      case NumberInputProps.number:
         this.number = +newValue;
         break;
 
-      case "step":
+      case NumberInputProps.step:
         this.step = +newValue;
         const [, decimal] = newValue.split(".");
         this.precision = decimal ? decimal.length : 0;
         break;
 
-      case "label":
+      case NumberInputProps.label:
         this.label = newValue;
+        break;
+
+      case NumberInputProps.allowNegativeValues:
+        this.allowNegativeValues = newValue === "true";
         break;
     }
   }
@@ -68,7 +81,10 @@ export class NumberInput extends HTMLElement {
     });
 
     arrowDown?.addEventListener("click", (e) => {
-      this.number = this.withPrecision(this.number - this.step);
+      const number = this.withPrecision(this.number - this.step);
+      const isLessThanZero = number < 0;
+
+      this.number = isLessThanZero && this.allowNegativeValues ? number : 0;
 
       if (numberOutput) {
         numberOutput.innerHTML = this.number.toString();

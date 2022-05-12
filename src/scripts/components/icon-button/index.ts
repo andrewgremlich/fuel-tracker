@@ -20,7 +20,6 @@ export class IconButton extends HTMLElement {
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    console.log(name, oldValue, newValue);
     switch (name) {
       case "icon":
         this.icon = newValue;
