@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Body Fuel Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,13 +12,13 @@
     />
     <link rel="stylesheet" href="./styles/main.css" />
   </head>
-  <body>
+  <body class="dark-mode">
     <h1 id="app-header">Body Fuel Tracker</h1>
 
     <main>
       <section id="calorie-total">
         <p>0 Calories Consumed</p>
-        <number-input number="0" step="0.1"></number-input>
+        <number-input number="0" step="0.25" label="Page Size"></number-input>
       </section>
 
       <section id="search-food">

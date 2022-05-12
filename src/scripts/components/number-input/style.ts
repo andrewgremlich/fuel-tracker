@@ -13,6 +13,7 @@ export const styles = `
   .number-output {
     margin: 0 0.5rem;
     font-size: 2rem;
+    color: var(--item-color);
   }
 
   .number-controls {
@@ -26,6 +27,20 @@ export const styles = `
     border: none;
     background: transparent;
     cursor: pointer;
+  }
+
+  .number-output-label {
+    color: var(--item-color);
+    font-size: 12px;
+  }
+
+  .number-output-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    width: 75px;
   }
 </style>
 `;

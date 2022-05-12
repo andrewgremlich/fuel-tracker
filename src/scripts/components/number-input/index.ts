@@ -4,6 +4,8 @@ import { styles } from "./style";
 export class NumberInput extends HTMLElement {
   number: number = 0;
   step: number = 0;
+  label: string = "";
+  precision: number = 0;
 
   constructor() {
     super();
@@ -11,7 +13,10 @@ export class NumberInput extends HTMLElement {
     if (this.shadowRoot) {
       this.shadowRoot.innerHTML = `
       ${styles}
-      <p class="number-output">${this.number}</p>
+      <div class="number-output-wrapper">
+        <p class="number-output">${this.number}</p>
+        <p class="number-output-label">${this.label}</p>
+      </div>
       <div class="number-controls">
         <icon-button size="24px" icon="arrow-up"></icon-button>
         <icon-button size="24px" icon="arrow-down"></icon-button>
@@ -20,8 +25,12 @@ export class NumberInput extends HTMLElement {
     }
   }
 
+  withPrecision(num: number) {
+    return +num.toFixed(this.precision);
+  }
+
   static get observedAttributes() {
-    return ["number", "step"];
+    return ["number", "step", "label"];
   }
 
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
@@ -32,6 +41,12 @@ export class NumberInput extends HTMLElement {
 
       case "step":
         this.step = +newValue;
+        const [, decimal] = newValue.split(".");
+        this.precision = decimal ? decimal.length : 0;
+        break;
+
+      case "label":
+        this.label = newValue;
         break;
     }
   }
@@ -45,7 +60,7 @@ export class NumberInput extends HTMLElement {
     );
 
     arrowUp?.addEventListener("click", (e) => {
-      this.number = this.number + this.step;
+      this.number = this.withPrecision(this.number + this.step);
 
       if (numberOutput) {
         numberOutput.innerHTML = this.number.toString();
@@ -53,7 +68,7 @@ export class NumberInput extends HTMLElement {
     });
 
     arrowDown?.addEventListener("click", (e) => {
-      this.number = this.number - this.step;
+      this.number = this.withPrecision(this.number - this.step);
 
       if (numberOutput) {
         numberOutput.innerHTML = this.number.toString();
@@ -63,11 +78,18 @@ export class NumberInput extends HTMLElement {
 
   connectedCallback() {
     const numberOutput = this.shadowRoot?.querySelector(".number-output");
+    const numberOutputLabel = this.shadowRoot?.querySelector(
+      ".number-output-label"
+    );
 
     if (numberOutput) {
       numberOutput.innerHTML = this.number.toString();
     }
 
     this.events(numberOutput);
+
+    if (numberOutputLabel) {
+      numberOutputLabel.innerHTML = this.label;
+    }
   }
 }

@@ -7,6 +7,39 @@
   transition: all 0.2s;
 }
 
+:root {
+  --theme-red: #9c4949;
+  --theme-blue: #66b3d6;
+  --theme-dark-green: #3d7749;
+  --theme-light-green: #3d7749;
+  --theme-yellow: #fbd08a;
+  --theme-orange: #f79e55;
+  --theme-purple: #9c4c9c;
+  --theme-pink: #ffa3a3;
+  --theme-brown: #9c654c;
+  --theme-grey: #9c9c9c;
+  --theme-light-grey: #f7f7f7;
+  --theme-dark-grey: #4c4c4c;
+  --theme-black: #131313;
+  --theme-white: #f3f3f3;
+}
+
+.dark-mode {
+  --item-background: var(--theme-dark-green);
+  --item-color: var(--theme-white);
+
+  background-color: var(--theme-dark-grey);
+  color: var(--theme-white);
+}
+
+.light-mode {
+  --item-background: var(var(--theme-light-green));
+  --item-color: var(var(--theme-black));
+
+  background-color: var(--theme-white);
+  color: var(--theme-black);
+}
+
 body {
   padding: 1rem 2rem;
 }
@@ -38,7 +71,7 @@ main {
 
 label {
   display: block;
-  margin-bottom: .4rem;
+  margin-bottom: 0.4rem;
 }
 
 section {
