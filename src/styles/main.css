@@ -1,4 +1,5 @@
 @import url("./classes.css");
+@import url("./ids.css");
 
 * {
   box-sizing: border-box;

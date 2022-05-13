@@ -8,7 +8,6 @@
   font-weight: 300;
   color: #333;
   outline: none;
-  margin-bottom: 1rem;
 }
 
 .select-input {
@@ -27,4 +26,30 @@
 .note-paragraph {
   font-size: 12px;
   margin-bottom: 0.4rem;
+}
+
+.primary-button {
+  width: 80%;
+  height: 40px;
+  border: none;
+  border-radius: 2rem;
+  background-color: var(--item-background);
+  color: var(--item-color);
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+  outline: none;
+  margin-bottom: 1rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.align-items-center {
+  align-items: center;
 }

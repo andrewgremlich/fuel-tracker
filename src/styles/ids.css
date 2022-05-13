@@ -1,0 +1,45 @@
+#search-food-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "search-food-input"
+    "page-number"
+    "page-size"
+    "search-food-button";
+  gap: 1rem;
+}
+
+#search-food-input {
+  grid-area: search-food-input;
+}
+
+#page-number {
+  grid-area: page-number;
+}
+
+#page-size {
+  grid-area: page-size;
+}
+
+#search-food-button {
+  grid-area: search-food-button;
+  justify-self: center;
+}
+
+@media screen and (min-width: 768px) {
+  #search-food-area {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "search-food-input search-food-input"
+      "page-number page-size"
+      "search-food-button search-food-button";
+  }
+
+  #page-number {
+    justify-self: end;
+  }
+
+  #page-size {
+    justify-self: start;
+  }
+}
