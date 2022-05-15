@@ -1,8 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../home/andrewg/Documents/personal_projects/fuel-tracker/netlify/functions/food.ts"],
-  "sourceRoot": "/tmp/tmp-30368-9oPHckclME61",
-  "sourcesContent": ["import { Handler } from \"@netlify/functions\";\n\nconst handler: Handler = async (event, context) => {\n  const queryParams = req.query as unknown as Partial<QueryParams>;\n\n  const fetchUSDAdata = await fetch(\n    `https://api.nal.usda.gov/fdc/v1/food/${queryParams.foodId}?api_key=${process.env.USDA_API_KEY}`\n  );\n  const data = (await fetchUSDAdata.json()) as FoodMeta<NutrientDataSimple>;\n\n  console.log(data);\n\n  res.status(200).json({\n    fdcId: data.fdcId ?? \"\",\n    description: data.description ?? \"\",\n    nutrients: data.foodNutrients.map((nutrient) => ({\n      description: nutrient.nutrient.name,\n      value: nutrient.amount,\n      unit: nutrient.nutrient.unitName,\n      name: nutrient.nutrient.name,\n    })),\n  });\n};\n\nexport { handler };\n"],
-  "mappings": ";;;;;;;;;AAAA;AAAA;AAAA;AAEA,IAAM,UAAmB,OAAO,OAAO,YAAY;AAFnD;AAGE,QAAM,cAAc,IAAI;AAExB,QAAM,gBAAgB,MAAM,MAC1B,wCAAwC,YAAY,kBAAkB,QAAQ,IAAI;AAEpF,QAAM,OAAQ,MAAM,cAAc;AAElC,UAAQ,IAAI;AAEZ,MAAI,OAAO,KAAK,KAAK;AAAA,IACnB,OAAO,WAAK,UAAL,YAAc;AAAA,IACrB,aAAa,WAAK,gBAAL,YAAoB;AAAA,IACjC,WAAW,KAAK,cAAc,IAAI,CAAC,aAAc;AAAA,MAC/C,aAAa,SAAS,SAAS;AAAA,MAC/B,OAAO,SAAS;AAAA,MAChB,MAAM,SAAS,SAAS;AAAA,MACxB,MAAM,SAAS,SAAS;AAAA;AAAA;AAAA;",
-  "names": []
-}
