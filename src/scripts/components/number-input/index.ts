@@ -34,10 +34,6 @@ export class NumberInput extends HTMLElement {
     }
   }
 
-  withPrecision(num: number) {
-    return +num.toFixed(this.precision);
-  }
-
   static get observedAttributes() {
     return ["number", "step", "label", "allow-negative-values"];
   }
@@ -62,6 +58,27 @@ export class NumberInput extends HTMLElement {
         this.allowNegativeValues = newValue === "true";
         break;
     }
+  }
+
+  connectedCallback() {
+    const numberOutput = this.shadowRoot?.querySelector(".number-output");
+    const numberOutputLabel = this.shadowRoot?.querySelector(
+      ".number-output-label"
+    );
+
+    if (numberOutput) {
+      numberOutput.innerHTML = this.number.toString();
+    }
+
+    this.events(numberOutput);
+
+    if (numberOutputLabel) {
+      numberOutputLabel.innerHTML = this.label;
+    }
+  }
+
+  withPrecision(num: number) {
+    return +num.toFixed(this.precision);
   }
 
   events(numberOutput?: Element | null) {
@@ -92,22 +109,5 @@ export class NumberInput extends HTMLElement {
         numberOutput.innerHTML = this.number.toString();
       }
     });
-  }
-
-  connectedCallback() {
-    const numberOutput = this.shadowRoot?.querySelector(".number-output");
-    const numberOutputLabel = this.shadowRoot?.querySelector(
-      ".number-output-label"
-    );
-
-    if (numberOutput) {
-      numberOutput.innerHTML = this.number.toString();
-    }
-
-    this.events(numberOutput);
-
-    if (numberOutputLabel) {
-      numberOutputLabel.innerHTML = this.label;
-    }
   }
 }

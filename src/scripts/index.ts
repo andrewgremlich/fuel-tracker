@@ -34,3 +34,7 @@ document
 
     console.log(foodSearchJson);
   });
+
+setTimeout(() => {
+  document.querySelector("toaster-oven")?.setAttribute("data-active", "true");
+}, 1000);

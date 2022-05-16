@@ -1,5 +1,10 @@
-import { arrowDown, arrowUp, alarm } from "./icons";
+import { arrowDown, arrowUp, alarm } from "../../icons";
 import { styles } from "./style";
+
+enum IconButtonProps {
+  size = "size",
+  icon = "icon",
+}
 
 export class IconButton extends HTMLElement {
   icon: string = "";
@@ -19,12 +24,16 @@ export class IconButton extends HTMLElement {
     return ["icon", "size"];
   }
 
-  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  attributeChangedCallback(
+    name: IconButtonProps,
+    oldValue: string,
+    newValue: string
+  ) {
     switch (name) {
-      case "icon":
+      case IconButtonProps.icon:
         this.icon = newValue;
         break;
-      case "size":
+      case IconButtonProps.size:
         this.style.setProperty("--size", newValue);
         break;
     }
