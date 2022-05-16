@@ -9,7 +9,7 @@
 }
 
 :root {
-  --theme-red: #9c4949;
+  --theme-red: #8e3030;
   --theme-blue: #66b3d6;
   --theme-dark-green: #3d7749;
   --theme-light-green: #3d7749;
@@ -50,6 +50,7 @@ h2,
 h3,
 h4,
 h5,
+h6,
 p,
 label,
 input {

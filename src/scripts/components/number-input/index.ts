@@ -82,9 +82,11 @@ export class NumberInput extends HTMLElement {
 
     arrowDown?.addEventListener("click", (e) => {
       const number = this.withPrecision(this.number - this.step);
-      const isLessThanZero = number < 0;
+      const isLessThanZero = number > 0;
 
-      this.number = isLessThanZero && this.allowNegativeValues ? number : 0;
+      console.log(number, isLessThanZero, this.allowNegativeValues);
+
+      this.number = this.allowNegativeValues || isLessThanZero ? number : 0;
 
       if (numberOutput) {
         numberOutput.innerHTML = this.number.toString();

@@ -1,17 +1,19 @@
 import { NumberInput } from "./components/number-input";
 import { IconButton } from "./components/icon-button";
+import { ToasterOven } from "./components/toaster-oven";
+
+import { getById } from "./query";
 
 customElements.define("number-input", NumberInput);
 customElements.define("icon-button", IconButton);
+customElements.define("toaster-oven", ToasterOven);
 
 document
   .getElementById("search-food-button")
   ?.addEventListener("click", async () => {
-    const searchValue = document.getElementById(
-      "search-food-input"
-    ) as HTMLInputElement;
-    const pageNumber = document.getElementById("page-number") as NumberInput;
-    const pageSize = document.getElementById("page-size") as NumberInput;
+    const searchValue = getById("search-food-input") as HTMLInputElement;
+    const pageNumber = getById("page-number") as NumberInput;
+    const pageSize = getById("page-size") as NumberInput;
 
     if (!searchValue.value) {
       return;
