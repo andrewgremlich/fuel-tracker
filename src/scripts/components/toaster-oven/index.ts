@@ -1,9 +1,10 @@
-import { alarm } from "../../icons";
+import { iconsDict, Icons } from "../../icons";
 
 import { styles } from "./style";
 
 enum ToasterOvenProps {
   DataActive = "data-active",
+  Icon = "icon",
 }
 
 export class ToasterOven extends HTMLElement {
@@ -17,7 +18,7 @@ export class ToasterOven extends HTMLElement {
       this.shadowRoot.innerHTML = `
         ${styles}
         <div class="toaster-oven">
-          <div class="icon">${alarm}</div>
+          <div class="icon"></div>
           <div class="desc">
             <slot></slot>
           </div>
@@ -43,6 +44,15 @@ export class ToasterOven extends HTMLElement {
             ?.querySelector(".toaster-oven")
             ?.classList.toggle("active");
         }
+        break;
+
+      case ToasterOvenProps.Icon:
+        const iconSelect = this.shadowRoot?.querySelector(".icon");
+
+        if (iconSelect) {
+          iconSelect.innerHTML = iconsDict[newValue as Icons];
+        }
+
         break;
 
       default:

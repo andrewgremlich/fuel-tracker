@@ -37,4 +37,4 @@ document
 
 setTimeout(() => {
   document.querySelector("toaster-oven")?.setAttribute("data-active", "true");
-}, 1000);
+}, 2000);

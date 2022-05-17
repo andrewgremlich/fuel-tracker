@@ -1,4 +1,4 @@
-import { arrowDown, arrowUp, alarm } from "../../icons";
+import { arrowDown, arrowUp, alarm, Icons } from "../../icons";
 import { styles } from "./style";
 
 enum IconButtonProps {
@@ -7,7 +7,7 @@ enum IconButtonProps {
 }
 
 export class IconButton extends HTMLElement {
-  icon: string = "";
+  icon: Icons = Icons.alarm;
 
   constructor() {
     super();
@@ -31,7 +31,7 @@ export class IconButton extends HTMLElement {
   ) {
     switch (name) {
       case IconButtonProps.icon:
-        this.icon = newValue;
+        this.icon = newValue as Icons;
         break;
       case IconButtonProps.size:
         this.style.setProperty("--size", newValue);
@@ -39,11 +39,11 @@ export class IconButton extends HTMLElement {
     }
   }
 
-  attachIcon(icon: string) {
+  attachIcon(icon: Icons) {
     switch (icon) {
-      case "arrow-up":
+      case Icons.arrowUp:
         return arrowUp;
-      case "arrow-down":
+      case Icons.arrowDown:
         return arrowDown;
       default:
         return `${alarm} no icon found`;
