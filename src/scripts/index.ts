@@ -36,5 +36,10 @@ document
   });
 
 setTimeout(() => {
-  document.querySelector("toaster-oven")?.setAttribute("data-active", "true");
+  const toasterOven = document.querySelector("toaster-oven");
+
+  if (toasterOven) {
+    toasterOven.innerHTML = "<label>Hello World!</label>";
+    toasterOven.setAttribute("data-active", "true");
+  }
 }, 2000);

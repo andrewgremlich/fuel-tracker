@@ -19,9 +19,9 @@ export class ToasterOven extends HTMLElement {
         ${styles}
         <div class="toaster-oven">
           <div class="icon"></div>
-          <div class="desc">
-            <slot></slot>
-          </div>
+          <slot>
+            <label>There was no message provided.</label>
+          </slot>
         </div>
       `;
     }
@@ -42,7 +42,7 @@ export class ToasterOven extends HTMLElement {
           this.active = true;
           this.shadowRoot
             ?.querySelector(".toaster-oven")
-            ?.classList.toggle("active");
+            ?.classList.add("active");
         }
         break;
 
@@ -61,6 +61,13 @@ export class ToasterOven extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log("connectedCallback");
+    this.shadowRoot
+      ?.querySelector(".toaster-oven")
+      ?.addEventListener("animationend", () => {
+        this.active = false;
+        this.shadowRoot
+          ?.querySelector(".toaster-oven")
+          ?.classList.remove("active");
+      });
   }
 }
