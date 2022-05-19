@@ -40,7 +40,16 @@
           label="Page Size"
         ></number-input>
         <button class="primary-button" id="search-food-button">Search</button>
-        <div id="search-results"></div>
+        <div id="search-results">
+          <div id="results"></div>
+          <template id="food-result-template">
+            <div class="food-result">
+              <p class="food-name">Food Name</p>
+              <p class="desc">Description</p>
+              <p class="calorie-count">Calories</p>
+            </div>
+          </template>
+        </div>
       </section>
 
       <section id="bmr-calculator">

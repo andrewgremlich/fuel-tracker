@@ -51,10 +51,11 @@ export type SearchQueryParams = {
 export type FoodReturnData = {
   fdcId: number;
   description: string;
-  nutrients: {
+  brandOwner: string;
+  foodNutrients: {
     description: string;
     value: number;
-    unit: string;
+    unitName: string;
     name: string;
   }[];
 };
