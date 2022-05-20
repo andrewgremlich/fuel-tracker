@@ -9,8 +9,11 @@ customElements.define("icon-button", IconButton);
 customElements.define("toaster-oven", ToasterOven);
 
 document
-  .getElementById("search-food-button")
-  ?.addEventListener("click", searchResults);
+  .getElementById("search-food-area")
+  ?.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    searchResults();
+  });
 
 // how to use toaoster-oven:
 //

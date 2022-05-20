@@ -28,6 +28,7 @@
 .dark-mode {
   --item-background: var(--theme-dark-green);
   --item-color: var(--theme-white);
+  --item-border: var(--theme-yellow);
 
   background-color: var(--theme-dark-grey);
   color: var(--theme-white);
@@ -36,6 +37,7 @@
 .light-mode {
   --item-background: var(var(--theme-light-green));
   --item-color: var(var(--theme-black));
+  --item-border: var(--theme-grey);
 
   background-color: var(--theme-white);
   color: var(--theme-black);

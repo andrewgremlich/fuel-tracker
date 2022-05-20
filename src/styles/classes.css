@@ -53,3 +53,17 @@
 .align-items-center {
   align-items: center;
 }
+
+.food-result {
+  border: 1px solid var(--item-border);
+  border-radius: 2rem;
+
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+}
+
+.food-result:hover {
+  background-color: var(--item-background);
+  color: var(--item-color);
+  cursor: pointer;
+}
