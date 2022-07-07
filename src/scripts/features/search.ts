@@ -1,13 +1,17 @@
 import { FoodReturnData } from "models/foods";
 
 import { NumberInput } from "../components/number-input";
-import { getById } from "../query";
+import { getById } from "../features/query";
 
 const displayResults = (foodSearchJson: FoodReturnData[]) => {
   const foodResults = document.querySelector("#results");
   const foodResultTemplate = getById(
     "food-result-template"
   ) as HTMLTemplateElement;
+
+  if (foodResults) {
+    foodResults.innerHTML = "";
+  }
 
   if (foodResultTemplate) {
     for (let item of foodSearchJson) {

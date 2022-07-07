@@ -1,4 +1,4 @@
-import { iconsDict, Icons } from "../../icons";
+import { iconsDict, Icons } from "../../features/icons";
 
 import { styles } from "./style";
 

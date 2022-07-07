@@ -1,4 +1,4 @@
-#search-food-area {
+#search-food-area form {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -27,7 +27,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  #search-food-area {
+  #search-food-area form {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "search-food-input search-food-input"

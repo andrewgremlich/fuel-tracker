@@ -60,17 +60,13 @@ input {
 }
 
 main {
-  display: grid;
-  gap: 2rem;
-  grid-template-areas: "calorie-total" "search-food" "bmr-calculator";
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
-@media screen and (min-width: 600px) {
-  main {
-    grid-template-areas:
-      "calorie-total search-food"
-      "bmr-calculator search-food";
-  }
+main > section {
+  margin-bottom: 3rem;
 }
 
 label {
@@ -80,18 +76,4 @@ label {
 
 section {
   min-height: 200px;
-}
-
-#calorie-total {
-  grid-area: calorie-total;
-  align-self: center;
-  justify-self: center;
-}
-
-#search-food {
-  grid-area: search-food;
-}
-
-#bmr-calculator {
-  grid-area: bmr-calculator;
 }

@@ -1,4 +1,4 @@
-import { arrowDown, arrowUp, alarm, Icons } from "../../icons";
+import { arrowDown, arrowUp, alarm, Icons } from "../../features/icons";
 import { styles } from "./style";
 
 enum IconButtonProps {

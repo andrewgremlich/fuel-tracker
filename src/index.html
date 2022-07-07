@@ -20,41 +20,9 @@
         <p>0 Calories Consumed</p>
       </section>
 
-      <form id="search-food-area">
-        <input
-          placeholder="Search for food"
-          type="search"
-          id="search-food-input"
-          class="text-input"
-        />
-        <number-input
-          id="page-number"
-          number="1"
-          step="1"
-          label="Page Number"
-        ></number-input>
-        <number-input
-          id="page-size"
-          number="5"
-          step="5"
-          label="Page Size"
-        ></number-input>
-        <button class="primary-button" id="search-food-button">Search</button>
-        <div id="search-results">
-          <div id="results"></div>
-          <template id="food-result-template">
-            <div class="food-result">
-              <p class="food-name">Food Name</p>
-              <p class="desc">Description</p>
-              <p class="calorie-count">Calories</p>
-            </div>
-          </template>
-        </div>
-      </form>
-
       <section id="bmr-calculator">
-        <form>
-          <label htmlFor="maleRadio">
+        <form id="bmr-form">
+          <label for="maleRadio">
             Male
             <input
               type="radio"
@@ -65,7 +33,7 @@
               checked="true"
             />
           </label>
-          <label htmlFor="femaleRadio">
+          <label for="femaleRadio">
             Female
             <input
               type="radio"
@@ -75,29 +43,62 @@
               id="femaleRadio"
             />
           </label>
-          <label htmlFor="activity-intensity">
+          <label for="activity-intensity">
             Imperial
             <input
               type="radio"
-              value="metric"
+              value="imperial"
               data-formtype="measurement"
               name="measurement"
               id="metricRadio"
               checked="true"
           /></label>
 
-          <label htmlFor="metricRadio">
+          <label for="metricRadio">
             Metric
             <input
               type="radio"
-              value="imperial"
+              value="metric"
               data-formtype="measurement"
               name="measurement"
               id="imperialRadio"
             />
           </label>
 
-          <label htmlFor="imperialRadio">
+          <label for="weight">
+            Weight
+            <input
+              type="number"
+              name="weight"
+              data-formtype="weight"
+              id="weight"
+              placeholder="Weight"
+            />
+          </label>
+
+          <label for="height">
+            Height
+            <input
+              type="number"
+              name="height"
+              data-formtype="height"
+              id="height"
+              placeholder="Height"
+            />
+          </label>
+
+          <label for="age">
+            Age
+            <input
+              type="number"
+              name="age"
+              data-formtype="age"
+              id="age"
+              placeholder="Age"
+            />
+          </label>
+
+          <label for="imperialRadio">
             Activity Intensity
             <select
               name="activity-intensity"
@@ -117,6 +118,40 @@
         <p class="note-paragraph">
           Using Harris-Benedict BMR revised by Roza and Shizgal
         </p>
+      </section>
+
+      <section id="search-food-area">
+        <form>
+          <input
+            placeholder="Search for food"
+            type="search"
+            id="search-food-input"
+            class="text-input"
+          />
+          <number-input
+            id="page-number"
+            number="1"
+            step="1"
+            label="Page Number"
+          ></number-input>
+          <number-input
+            id="page-size"
+            number="5"
+            step="5"
+            label="Page Size"
+          ></number-input>
+          <button class="primary-button" id="search-food-button">Search</button>
+          <div id="search-results">
+            <div id="results"></div>
+            <template id="food-result-template">
+              <div class="food-result">
+                <p class="food-name">Food Name</p>
+                <p class="desc">Description</p>
+                <p class="calorie-count">Calories</p>
+              </div>
+            </template>
+          </div>
+        </form>
       </section>
     </main>
 
